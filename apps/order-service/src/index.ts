@@ -2,7 +2,7 @@ import express, {Request, Response, NextFunction} from "express"
 import cors from 'cors'
 import { clerkMiddleware } from "@clerk/express";
 import {connectOrderDB} from "@repo/order-db"
-
+import orderRoutes from './routes/order.route'
 const app = express();
 app.use(cors({
     origin:["http://localhost:3002","http://localhost:3003"],
@@ -27,7 +27,7 @@ const start = async () => {
 
 start();
 
-// app.use("/api/orders", orderRoutes);
+app.use(orderRoutes);
 
 
 app.get('/health', (req : Request, res : Response)=>{
